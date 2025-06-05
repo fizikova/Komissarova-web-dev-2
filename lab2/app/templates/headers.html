@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Заголовки</h1>
+
+  <table class="table">
+      <tbody>
+        {% for k, v in request.headers.items() %}
+          <tr>
+              <td>{{ k }}</td>
+              <td>{{ v }}</td>
+          </tr>
+        {%endfor%}
+      </tbody>
+  </table>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2>Проверка номера телефона</h2>
+
+  <form method="POST">
+    <label for="phone">Введите номер телефона</label><br>
+    <input
+      type="text"
+      id="phone"
+      name="phone"
+      value="{{ raw }}"
+    ><br>
+
+    {% if status == 'character mismatch' %}
+      <p>Недопустимый ввод. В номере телефона встречаются недопустимые символы.</p>
+    {% elif status == 'length discrepancy' %}
+      <p>Недопустимый ввод. Неверное количество цифр.</p>
+    {% endif %}
+
+    <button type="submit">Проверить</button>
+  </form>
+
+  {% if status == 'good' %}
+    {# Берём последние 10 цифр и форматируем #}
+    {% set d = digits[-10:] %}
+    {% set formatted = "8-{}-{}-{}-{}".format(d[0:3], d[3:6], d[6:8], d[8:]) %}
+
+    <h3>Отформатированный номер:</h3>
+    <p>{{ formatted }}</p>
+  {% endif %}
+{% endblock %}
