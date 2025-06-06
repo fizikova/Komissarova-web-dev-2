@@ -1,5 +1,5 @@
 import pytest
-from app import app, posts_list as real_posts_list
+from app.app import app, posts_list as real_posts_list
 from flask import template_rendered
 from contextlib import contextmanager
 
